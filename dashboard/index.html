@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Launch Radar — pre-token protocols, ranked</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="theme.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="title-row">
+      <div>
+        <h1><span class="pulse" aria-hidden="true"></span>Launch Radar</h1>
+        <p class="tagline" id="tagline">Pre-token protocols ranked by implied launch value</p>
+      </div>
+      <div class="snap-chip" id="snap-chip">SNAPSHOT</div>
+    </div>
+    <div class="tiles" id="tiles" aria-label="Snapshot statistics"></div>
+    <p class="formula-line" id="formula-line"></p>
+  </header>
+
+  <nav class="tabs" aria-label="Views">
+    <button type="button" class="tab on" data-tab="board">Board</button>
+    <button type="button" class="tab" data-tab="live">Live tokens</button>
+    <button type="button" class="tab" data-tab="method">Method</button>
+  </nav>
+
+  <main>
+    <!-- BOARD -->
+    <section id="pane-board" class="pane">
+      <div class="tools" role="search">
+        <label class="fld wide">
+          <span class="flab">Search</span>
+          <input id="q" type="search" placeholder="Protocol name or slug" autocomplete="off">
+        </label>
+        <label class="fld">
+          <span class="flab">Category</span>
+          <select id="catSel"></select>
+        </label>
+        <label class="fld">
+          <span class="flab">Chain</span>
+          <select id="chainSel"></select>
+        </label>
+        <label class="fld">
+          <span class="flab">Min TVL</span>
+          <select id="tvlSel">
+            <option value="0">Any</option>
+            <option value="10000000">$10M</option>
+            <option value="50000000">$50M</option>
+            <option value="250000000">$250M</option>
+            <option value="1000000000">$1B</option>
+          </select>
+        </label>
+        <label class="chk">
+          <input id="wlOnly" type="checkbox">
+          <span>Watchlist only</span>
+        </label>
+        <p class="count" id="countLine" aria-live="polite"></p>
+      </div>
+
+      <div class="scroll">
+        <table class="grid" id="boardTable">
+          <thead id="boardHead"></thead>
+          <tbody id="boardRows"></tbody>
+        </table>
+      </div>
+      <p class="hint">Click any row for the full breakdown and farm plan. Click a column heading to sort.</p>
+    </section>
+
+    <!-- DETAIL -->
+    <section id="pane-detail" class="pane" hidden>
+      <button type="button" class="back" id="backBtn">&larr; Back to board</button>
+      <div id="detailOut"></div>
+    </section>
+
+    <!-- LIVE -->
+    <section id="pane-live" class="pane" hidden>
+      <p class="note">These protocols already have a token that trades, so they are not ranked — the market has
+      already priced them. The radar uses them only to calibrate the category multiples applied to the pre-token board.</p>
+      <div class="scroll">
+        <table class="grid" id="liveTable">
+          <thead>
+            <tr><th>Protocol</th><th>Category</th><th class="num">TVL</th><th class="num">Market cap</th><th class="num">Mcap / TVL</th><th class="num">7d %</th></tr>
+          </thead>
+          <tbody id="liveRows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- METHOD -->
+    <section id="pane-method" class="pane" hidden>
+      <div id="methodOut"></div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>Implied values are this entry&rsquo;s model output from a frozen snapshot — not make.fun&rsquo;s claim and not financial advice.</p>
+  </footer>
+</div>
+
+<script src="../data.js"></script>
+<script src="radar.js"></script>
+</body>
+</html>
